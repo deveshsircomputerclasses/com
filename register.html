@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Registration - DEVESH SIR COMPUTER CLASSES</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // रोल नंबर जेनरेट फंक्शन (रैंडम + टाइमस्टैम्प)
+    function generateRollNumber() {
+      const timestamp = Date.now().toString().slice(-5);
+      const random = Math.floor(100 + Math.random() * 900);
+      return 'DSCC' + random + timestamp;
+    }
+
+    function registerStudent(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const mobile = document.getElementById("mobile").value;
+      const course = document.getElementById("course").value;
+
+      const rollNumber = generateRollNumber();
+      const password = Math.random().toString(36).slice(-8);
+
+      // Show Result
+      document.getElementById("result").innerHTML = `
+        <div class="mt-4 bg-green-100 p-4 rounded shadow">
+          <p><strong>Registration Successful!</strong></p>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Roll Number:</strong> ${rollNumber}</p>
+          <p><strong>Password:</strong> ${password}</p>
+          <p class="text-sm text-red-600">Save your Roll Number & Password for Login.</p>
+        </div>
+      `;
+
+      // Optional: Save to backend/Firebase here (not included)
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800 p-4">
+
+  <h1 class="text-2xl font-bold text-center mb-6">Student Registration</h1>
+
+  <form onsubmit="registerStudent(event)" class="max-w-md mx-auto bg-white p-6 rounded shadow">
+    <label class="block mb-2 font-medium">Full Name</label>
+    <input id="name" type="text" required class="w-full border p-2 rounded mb-4" />
+
+    <label class="block mb-2 font-medium">Mobile Number</label>
+    <input id="mobile" type="tel" required class="w-full border p-2 rounded mb-4" />
+
+    <label class="block mb-2 font-medium">Select Course</label>
+    <select id="course" required class="w-full border p-2 rounded mb-4">
+      <option value="">-- Select Course --</option>
+      <option value="DCA">DCA</option>
+      <option value="ADCA">ADCA</option>
+      <option value="CCC">CCC</option>
+      <option value="Tally">Tally</option>
+    </select>
+
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Register</button>
+  </form>
+
+  <div id="result" class="max-w-md mx-auto mt-6"></div>
+
+</body>
+</html>
