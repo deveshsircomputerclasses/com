@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Login - DEVESH SIR COMPUTER CLASSES</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function loginStudent(event) {
+      event.preventDefault();
+
+      const inputRoll = document.getElementById("roll").value.trim();
+      const inputPass = document.getElementById("password").value.trim();
+
+      // Demo डेटा (आप इसे Firebase/Database से बदल सकते हैं)
+      const savedRoll = localStorage.getItem("studentRoll");
+      const savedPass = localStorage.getItem("studentPass");
+
+      if (inputRoll === savedRoll && inputPass === savedPass) {
+        // Success - Redirect to Dashboard
+        window.location.href = "dashboard.html";
+      } else {
+        document.getElementById("msg").innerText = "❌ Invalid Roll Number or Password!";
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800 p-4">
+
+  <h1 class="text-2xl font-bold text-center mb-6">Student Login</h1>
+
+  <form onsubmit="loginStudent(event)" class="max-w-md mx-auto bg-white p-6 rounded shadow">
+    <label class="block mb-2 font-medium">Roll Number</label>
+    <input id="roll" type="text" required class="w-full border p-2 rounded mb-4" />
+
+    <label class="block mb-2 font-medium">Password</label>
+    <input id="password" type="password" required class="w-full border p-2 rounded mb-4" />
+
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Login</button>
+
+    <p id="msg" class="text-red-600 mt-4 font-semibold"></p>
+  </form>
+
+</body>
+</html>
