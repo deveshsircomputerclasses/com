@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Online Exam - DEVESH SIR COMPUTER CLASSES</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function submitExam(event) {
+      event.preventDefault();
+      let score = 0;
+
+      // Question 1
+      if (document.querySelector('input[name="q1"]:checked')?.value === "b") score++;
+
+      // Question 2
+      if (document.querySelector('input[name="q2"]:checked')?.value === "a") score++;
+
+      // Question 3
+      if (document.querySelector('input[name="q3"]:checked')?.value === "c") score++;
+
+      document.getElementById("result").innerHTML = `
+        <div class="bg-green-100 p-4 rounded mt-4">
+          <h3 class="text-lg font-bold">Your Score: ${score} / 3</h3>
+          <p class="text-sm mt-2">Thank you for attempting the exam!</p>
+        </div>
+      `;
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800 p-4">
+
+  <h1 class="text-2xl font-bold text-center mb-6">Online Exam</h1>
+
+  <form onsubmit="submitExam(event)" class="max-w-2xl mx-auto bg-white p-6 rounded shadow space-y-6">
+
+    <div>
+      <p class="font-semibold mb-2">1. What does CPU stand for?</p>
+      <label><input type="radio" name="q1" value="a" class="mr-2" /> Central Process Unit</label><br>
+      <label><input type="radio" name="q1" value="b" class="mr-2" /> Central Processing Unit</label><br>
+      <label><input type="radio" name="q1" value="c" class="mr-2" /> Control Processing Unit</label>
+    </div>
+
+    <div>
+      <p class="font-semibold mb-2">2. Which key is used to refresh a webpage?</p>
+      <label><input type="radio" name="q2" value="a" class="mr-2" /> F5</label><br>
+      <label><input type="radio" name="q2" value="b" class="mr-2" /> F1</label><br>
+      <label><input type="radio" name="q2" value="c" class="mr-2" /> F12</label>
+    </div>
+
+    <div>
+      <p class="font-semibold mb-2">3. What is the extension of a Microsoft Excel file?</p>
+      <label><input type="radio" name="q3" value="a" class="mr-2" /> .docx</label><br>
+      <label><input type="radio" name="q3" value="b" class="mr-2" /> .pptx</label><br>
+      <label><input type="radio" name="q3" value="c" class="mr-2" /> .xlsx</label>
+    </div>
+
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+      Submit Exam
+    </button>
+
+  </form>
+
+  <div id="result" class="max-w-2xl mx-auto"></div>
+
+</body>
+</html>
