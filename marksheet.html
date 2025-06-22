@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marksheet - DEVESH SIR COMPUTER CLASSES</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 p-4">
+
+  <h1 class="text-2xl font-bold text-center mb-6">Student Marksheet</h1>
+
+  <div id="marksheet" class="max-w-xl mx-auto bg-white p-6 rounded shadow text-center">
+    <h2 class="text-xl font-semibold mb-4">DEVESH SIR COMPUTER CLASSES</h2>
+    <p><strong>Name:</strong> <span id="studentName">Ravi Kumar</span></p>
+    <p><strong>Roll No:</strong> <span id="studentRoll">DSCC752938</span></p>
+    <p><strong>Course:</strong> <span id="studentCourse">ADCA</span></p>
+    <p><strong>Total Marks:</strong> 3</p>
+    <p><strong>Marks Obtained:</strong> <span id="studentScore">2</span></p>
+    <p><strong>Status:</strong> <span id="resultStatus" class="font-bold text-green-600">Pass</span></p>
+    <button onclick="downloadPDF()" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Download PDF</button>
+  </div>
+
+  <script>
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      const name = document.getElementById('studentName').textContent;
+      const roll = document.getElementById('studentRoll').textContent;
+      const course = document.getElementById('studentCourse').textContent;
+      const score = document.getElementById('studentScore').textContent;
+      const status = document.getElementById('resultStatus').textContent;
+
+      doc.setFontSize(16);
+      doc.text("DEVESH SIR COMPUTER CLASSES", 20, 20);
+      doc.setFontSize(12);
+      doc.text(`Name: ${name}`, 20, 40);
+      doc.text(`Roll No: ${roll}`, 20, 50);
+      doc.text(`Course: ${course}`, 20, 60);
+      doc.text(`Total Marks: 3`, 20, 70);
+      doc.text(`Marks Obtained: ${score}`, 20, 80);
+      doc.text(`Result: ${status}`, 20, 90);
+
+      doc.save(`${roll}_marksheet.pdf`);
+    }
+  </script>
+
+</body>
+</html>
